@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:healthylife/models/usuario.dart';
 import 'package:healthylife/pages/atualizar_perfil_page.dart';
 import 'package:healthylife/pages/atualizar_senha_page.dart';
 import 'package:healthylife/shared/temas_padrao.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PerfilPage extends StatefulWidget {
   const PerfilPage({super.key});
@@ -11,6 +13,25 @@ class PerfilPage extends StatefulWidget {
 }
 
 class _PerfilPageState extends State<PerfilPage> {
+  Usuario usuario = Usuario();
+@override
+  void initState() {
+    super.initState();
+    _dados();
+  }
+
+  _dados() async{
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      setState(() {
+          usuario.email = prefs.getString('email') ?? '';
+          usuario.senha = prefs.getString('senha') ?? '';
+          usuario.telefone = prefs.getString('telefone') ?? '';
+          usuario.nome = prefs.getString('nome') ?? '';
+          
+      });
+  }
+ 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -52,18 +73,33 @@ class _PerfilPageState extends State<PerfilPage> {
                   ),
                 ),
 
-              SizedBox(
-                    width: 450,
-                    height: 48,
-                    child: TextField(
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8.0),
-                          borderSide: BorderSide(color: Padroes().verde)
-                        ),
+                Padding(
+                padding: const EdgeInsets.only(top: 1),
+                child: Container(
+                  width: 450,
+                  height: 48,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.0),
+                    border: Border.all(
+                      color: Colors.green, // Cor da borda
+                      width: 1, // Largura da borda
+                    ),
+                    color: Colors.white,
+                  ),
+                  alignment: Alignment.centerLeft, // Para centralizar o conteúdo
+                  child: Center(
+                    child: Text(
+                      '${usuario.nome}',
+                      textAlign: TextAlign.center, // Alinhamento do texto
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.normal,
+                        color: Padroes().verde,
                       ),
                     ),
                   ),
+                ),
+              ),
 
                   Padding(
                   padding: const EdgeInsets.only(top: 10,right: 420),
@@ -77,21 +113,36 @@ class _PerfilPageState extends State<PerfilPage> {
                   ),
                 ),
 
-        
-              SizedBox(
+                Padding(
+                padding: const EdgeInsets.only(top: 1),
+                child: Container(
                   width: 450,
                   height: 48,
-                  child: TextField(
-                    decoration: InputDecoration(
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8.0),
-                        borderSide: BorderSide(color: Colors.black)
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.0),
+                    border: Border.all(
+                      color: Colors.green, // Cor da borda
+                      width: 1, // Largura da borda
+                    ),
+                    color: Colors.white,
+                  ),
+                  alignment: Alignment.centerLeft, // Para centralizar o conteúdo
+                  child: Center(
+                    child: Text(
+                      '${usuario.email}',
+                      textAlign: TextAlign.center, // Alinhamento do texto
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.normal,
+                        color: Padroes().verde,
                       ),
                     ),
                   ),
                 ),
-
-                Padding(
+              ),
+        
+                   
+                  Padding(
                   padding: const EdgeInsets.only(top: 10,right: 409,),
                   child: Text(
                     'Telefone',
@@ -102,18 +153,34 @@ class _PerfilPageState extends State<PerfilPage> {
                       ),
                   ),
                 ),
-              SizedBox(
+              
+              Padding(
+                padding: const EdgeInsets.only(top: 1),
+                child: Container(
                   width: 450,
                   height: 48,
-                  child: TextField(
-                  decoration: InputDecoration(
-                  border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8.0),
-                  borderSide: BorderSide(color: Colors.black)
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8.0),
+                    border: Border.all(
+                      color: Colors.green, // Cor da borda
+                      width: 1, // Largura da borda
+                    ),
+                    color: Colors.white,
+                  ),
+                  alignment: Alignment.centerLeft, // Para centralizar o conteúdo
+                  child: Center(
+                    child: Text(
+                      '${usuario.telefone}',
+                      textAlign: TextAlign.center, // Alinhamento do texto
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.normal,
+                        color: Padroes().verde,
+                      ),
+                    ),
                   ),
                 ),
               ),
-            ),
             SizedBox(
               child: Padding(
                 padding: const EdgeInsets.only(top: 20, left: 80),

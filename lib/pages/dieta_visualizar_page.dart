@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:healthylife/models/dieta.dart';
+import 'package:healthylife/models/usuario.dart';
 import 'package:healthylife/shared/temas_padrao.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DietaViewPage extends StatefulWidget {
   const DietaViewPage({super.key});
@@ -9,6 +12,28 @@ class DietaViewPage extends StatefulWidget {
 }
 
 class _DietaViewPageState extends State<DietaViewPage> {
+
+    Dieta dieta = Dieta();
+
+    void initState() {
+    super.initState();
+    _dados();
+  }
+
+  _dados() async{
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      setState(() {
+          dieta.cafedamanha = prefs.getString('cafedamanha') ?? '';
+          dieta.lanche1 = prefs.getString('lanche1') ?? '';
+          dieta.almoco = prefs.getString('almoco') ?? '';
+          dieta.lanche2 = prefs.getString('lanche2') ?? '';
+          dieta.jantar = prefs.getString('jantar') ?? '';
+          
+      });
+  }
+ 
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +72,7 @@ class _DietaViewPageState extends State<DietaViewPage> {
                   alignment: Alignment.centerLeft, // Para centralizar o conteúdo
                   child: Center(
                     child: Text(
-                      'Café da Manhã...',
+                      '${dieta.cafedamanha}',
                       textAlign: TextAlign.center, // Alinhamento do texto
                       style: TextStyle(
                         fontSize: 20,
@@ -75,7 +100,7 @@ class _DietaViewPageState extends State<DietaViewPage> {
                   alignment: Alignment.centerLeft, // Para centralizar o conteúdo
                   child: Center(
                     child: Text(
-                      'Lanche 1...',
+                      '${dieta.lanche1}',
                       textAlign: TextAlign.center, // Alinhamento do texto
                       style: TextStyle(
                         fontSize: 20,
@@ -103,7 +128,7 @@ class _DietaViewPageState extends State<DietaViewPage> {
                   alignment: Alignment.centerLeft, // Para centralizar o conteúdo
                   child: Center(
                     child: Text(
-                      'Almoço...',
+                      '${dieta.almoco}',
                       textAlign: TextAlign.center, // Alinhamento do texto
                       style: TextStyle(
                         fontSize: 20,
@@ -131,7 +156,7 @@ class _DietaViewPageState extends State<DietaViewPage> {
                   alignment: Alignment.centerLeft, // Para centralizar o conteúdo
                   child: Center(
                     child: Text(
-                      'Lanche 2...',
+                      '${dieta.lanche2}',
                       textAlign: TextAlign.center, // Alinhamento do texto
                       style: TextStyle(
                         fontSize: 20,
@@ -159,7 +184,7 @@ class _DietaViewPageState extends State<DietaViewPage> {
                   alignment: Alignment.centerLeft, // Para centralizar o conteúdo
                   child: Center(
                     child: Text(
-                      'Jantar...',
+                      '${dieta.jantar}',
                       textAlign: TextAlign.center, // Alinhamento do texto
                       style: TextStyle(
                         fontSize: 20,

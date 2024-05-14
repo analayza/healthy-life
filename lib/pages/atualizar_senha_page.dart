@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:healthylife/pages/menu_page.dart';
 import 'package:healthylife/shared/temas_padrao.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AtualizarSenhaPage extends StatefulWidget {
   const AtualizarSenhaPage({super.key});
@@ -10,6 +11,23 @@ class AtualizarSenhaPage extends StatefulWidget {
 }
 
 class _AtualizarSenhaPageState extends State<AtualizarSenhaPage> {
+  TextEditingController _senhaControler = TextEditingController();
+  TextEditingController _senhaNovaControler = TextEditingController();
+
+    Future<void> _updatePassword() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? currentPassword = prefs.getString("senha");
+
+    if (currentPassword == _senhaControler.text) {
+      // Se a senha antiga estiver correta
+      await prefs.setString("senha", _senhaNovaControler.text);
+      Navigator.push(context, MaterialPageRoute(builder: (context) => MenuPage()));
+     
+    } else {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => AtualizarSenhaPage()));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
   return Scaffold(
@@ -48,6 +66,7 @@ class _AtualizarSenhaPageState extends State<AtualizarSenhaPage> {
                     width: 450,
                     height: 48,
                     child: TextField(
+                      controller: _senhaControler,
                       decoration: InputDecoration(
                          prefixIcon: Icon(
                             Icons.password,
@@ -85,6 +104,7 @@ class _AtualizarSenhaPageState extends State<AtualizarSenhaPage> {
                       width: 450,
                       height: 48,
                       child: TextField(
+                        controller: _senhaNovaControler,
                         decoration: InputDecoration(
                           prefixIcon: Icon(
                             Icons.password,
@@ -104,9 +124,9 @@ class _AtualizarSenhaPageState extends State<AtualizarSenhaPage> {
                       ),
                     ),
                 
-                  ElevatedButton(onPressed: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context) => MenuPage()));
-                      },
+                  ElevatedButton(
+                    onPressed: _updatePassword,
+                    
                 child: Text(
                   "Salvar",
                   style: TextStyle(

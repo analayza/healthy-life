@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:healthylife/pages/dieta_visualizar_page.dart';
 import 'package:healthylife/shared/temas_padrao.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class DietaPage extends StatefulWidget {
   const DietaPage({super.key});
@@ -10,7 +11,17 @@ class DietaPage extends StatefulWidget {
 }
 
 class _DietaPageState extends State<DietaPage> {
+
+  
+  TextEditingController _cafedamanhaControler = TextEditingController();
+  TextEditingController _lanche1Controler = TextEditingController();
+  TextEditingController _almocoControler = TextEditingController();
+  TextEditingController _lanche2Controler = TextEditingController();
+  TextEditingController _jantarControler = TextEditingController();
+
   @override
+
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -39,6 +50,7 @@ class _DietaPageState extends State<DietaPage> {
                       width: 450,
                       height: 48,
                       child: TextField(
+                        controller: _cafedamanhaControler,
                         decoration: InputDecoration(
                           hintText: 'Café da Manhã',
                           hintStyle: TextStyle(color: Padroes().verde),
@@ -57,6 +69,7 @@ class _DietaPageState extends State<DietaPage> {
                       width: 450,
                       height: 48,
                       child: TextField(
+                        controller: _lanche1Controler,
                         decoration: InputDecoration(
                           hintText: 'Lanche 1',
                           hintStyle: TextStyle(color: Padroes().verde),
@@ -75,6 +88,7 @@ class _DietaPageState extends State<DietaPage> {
                       width: 450,
                       height: 48,
                       child: TextField(
+                        controller: _almocoControler,
                         decoration: InputDecoration(
                           hintText: 'Almoço',
                           hintStyle: TextStyle(color: Padroes().verde),
@@ -93,6 +107,7 @@ class _DietaPageState extends State<DietaPage> {
                       width: 450,
                       height: 48,
                       child: TextField(
+                        controller: _lanche2Controler,
                         decoration: InputDecoration(
                           hintText: 'Lanche 2',
                           hintStyle: TextStyle(color: Padroes().verde),
@@ -110,6 +125,7 @@ class _DietaPageState extends State<DietaPage> {
                       width: 450,
                       height: 48,
                       child: TextField(
+                        controller: _jantarControler,
                         decoration: InputDecoration(
                           hintText: 'Jantar',
                           hintStyle: TextStyle(color: Padroes().verde),
@@ -124,8 +140,23 @@ class _DietaPageState extends State<DietaPage> {
 
             Padding(
               padding: const EdgeInsets.only(top: 40),
-              child: ElevatedButton(onPressed: (){
+              child: ElevatedButton(onPressed: () async{
+
+                  try{
+
+                    SharedPreferences prefs = await SharedPreferences.getInstance();
+
+                    prefs.setString('cafedamanha', _cafedamanhaControler.text);
+                    prefs.setString('lanche1', _lanche1Controler.text);
+                    prefs.setString('almoco', _almocoControler.text);
+                    prefs.setString('lanche2', _lanche2Controler.text);
+                    prefs.setString('jantar', _jantarControler.text);
+
+                  }catch(Exception){}
+
                   Navigator.push(context, MaterialPageRoute(builder: (context) =>  DietaViewPage()));
+
+
                       }, 
                   child: Text(
                     "Salvar e Visualizar",

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:healthylife/pages/cadastro_page.dart';
 import 'package:healthylife/pages/menu_page.dart';
 import 'package:healthylife/shared/temas_padrao.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -11,6 +12,10 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+  TextEditingController _emailControler = TextEditingController();
+  TextEditingController _senhaControler = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -54,6 +59,7 @@ class _LoginPageState extends State<LoginPage> {
                     width: 450,
                     height: 48,
                     child: TextField(
+                      controller: _emailControler,
                       decoration: InputDecoration(
                         prefixIcon: Icon(
                           Icons.alternate_email,
@@ -86,6 +92,7 @@ class _LoginPageState extends State<LoginPage> {
                       width: 450,
                       height: 48,
                       child: TextField(
+                        controller: _senhaControler,
                         decoration: InputDecoration(
                           prefixIcon: Icon(
                             Icons.password,
@@ -129,9 +136,25 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       Padding(
                               padding: const EdgeInsets.only(left: 30),   
-                        child: ElevatedButton(onPressed: (){
-                          Navigator.push(context, MaterialPageRoute(builder: (context) => MenuPage()));
-                                  },
+                        child: ElevatedButton(
+                          onPressed: () async{
+                          try{
+
+                            SharedPreferences prefs = await SharedPreferences.getInstance();
+
+                            String email = prefs.getString('email') ?? '';
+                            String senha = prefs.getString('senha') ?? '';
+
+                            bool emailCorreto = _emailControler.text == email;
+                            bool senhaCorreta = _senhaControler.text == senha;
+
+                            if(emailCorreto && senhaCorreta){
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MenuPage()));
+                            }
+
+                          }catch(Exception){}          
+                            },
+
                           style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8.0), side: BorderSide(color: Colors.green, width: 2)),

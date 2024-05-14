@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:healthylife/models/usuario.dart';
 import 'package:healthylife/pages/clientes_page.dart';
 import 'package:healthylife/pages/perfil_page.dart';
 import 'package:healthylife/shared/temas_padrao.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
@@ -11,7 +13,27 @@ class MenuPage extends StatefulWidget {
 }
 
 class _MenuPageState extends State<MenuPage> {
+
+
+    Usuario usuario = Usuario();
+
+@override
+void initState() {
+  super.initState();
+  _nomedousuario();
+}
+
+_nomedousuario() async{
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      usuario.nome = prefs.getString('nome') ?? '';
+    });
+}
+ 
+
+
   @override
+
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
@@ -34,7 +56,7 @@ class _MenuPageState extends State<MenuPage> {
             Padding(
               padding: const EdgeInsets.only(right: 330),
               child: Text(
-                "Olá, Layza",
+                "Olá, ${usuario.nome}",
                 style: TextStyle(
                   color: Colors.green,
                   fontSize: 24,
@@ -69,8 +91,9 @@ class _MenuPageState extends State<MenuPage> {
                 Padding(
                   padding: const EdgeInsets.only(top: 30),
                   child: Container(
-                  child:  ElevatedButton(onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=> PerfilPage()));
+                  child:  ElevatedButton(onPressed: () async{
+                   await Navigator.push(context, MaterialPageRoute(builder: (context)=> PerfilPage()));
+                   _nomedousuario();
                   }, 
                   child: Text(
                     'Meu Perfil',
