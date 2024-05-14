@@ -11,19 +11,11 @@ class AtualizarSenhaPage extends StatefulWidget {
 }
 
 class _AtualizarSenhaPageState extends State<AtualizarSenhaPage> {
+  bool _obscureText = true;
   TextEditingController _senhaControler = TextEditingController();
   TextEditingController _senhaNovaControler = TextEditingController();
 
-bool ocultarSenha = true;
 
-  IconData exibirIcon = Icons.visibility;
-  IconData ocultar = Icons.visibility_off;
-
-  void exibir() {
-    setState(() {
-      ocultarSenha = !ocultarSenha;
-    });
-  }
 
     Future<void> _updatePassword() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -77,20 +69,24 @@ bool ocultarSenha = true;
                     width: 450,
                     height: 48,
                     child: TextField(
-                      obscureText: ocultarSenha,
                       controller: _senhaControler,
+                      
                       decoration: InputDecoration(
                          prefixIcon: Icon(
                             Icons.password,
                             color: Padroes().verde,  
                           ),
-                          
-                          suffixIcon: IconButton(
-                          color: Padroes().verde,
-                          icon: Icon(ocultarSenha ? exibirIcon : ocultar),
-                          onPressed: exibir,
+                          suffixIcon: IconButton(icon: Icon(_obscureText ? Icons.visibility : Icons.visibility_off, color: Padroes().verde,),
+                            onPressed: (){
+                                setState(() {
+                                  if(_obscureText==true){
+                                    _obscureText=false;
+                                  }else{_obscureText=true;}
+                                });
+                            }, 
                           ),
-                        
+                          
+                          
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8.0),
                           borderSide: BorderSide(color: Padroes().verde)
@@ -118,19 +114,25 @@ bool ocultarSenha = true;
                       width: 450,
                       height: 48,
                       child: TextField(
-                        obscureText: ocultarSenha,
                         controller: _senhaNovaControler,
+
                         decoration: InputDecoration(
                           prefixIcon: Icon(
                             Icons.password,
                             color: Padroes().verde,  
                           ),
-                          
-                          suffixIcon: IconButton(
-                          color: Padroes().verde,
-                          icon: Icon(ocultarSenha ? exibirIcon : ocultar),
-                          onPressed: exibir,
+
+                          suffixIcon: IconButton(icon: Icon(_obscureText ? Icons.visibility : Icons.visibility_off, color: Padroes().verde,),
+                            onPressed: (){
+                                setState(() {
+                                  if(_obscureText==true){
+                                    _obscureText=false;
+                                  }else{_obscureText=true;}
+                                });
+                            }, 
                           ),
+                          
+                          
                           
                             border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(8.0),

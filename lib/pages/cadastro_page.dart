@@ -11,21 +11,13 @@ class CadastroPage extends StatefulWidget {
 }
 
 class _CadastroPageState extends State<CadastroPage> {
+  bool _obscureText = true;
   TextEditingController _emailController = TextEditingController();
   TextEditingController _senhaController = TextEditingController();
   TextEditingController _telefoneController = TextEditingController();
   TextEditingController _nomeController = TextEditingController();
 
- bool ocultarSenha = true;
 
-  IconData exibirIcon = Icons.visibility;
-  IconData ocultar = Icons.visibility_off;
-
-  void exibir() {
-    setState(() {
-      ocultarSenha = !ocultarSenha;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -142,17 +134,23 @@ class _CadastroPageState extends State<CadastroPage> {
                 height: 48,
                 child: TextField(
                   controller: _senhaController,
-                  obscureText: ocultarSenha,
+                  
                   decoration: InputDecoration(
                     prefixIcon: Icon(
                       Icons.password,
                       color: Padroes().verde,
                     ),
-                    suffixIcon: IconButton(
-                      color: Padroes().verde,
-                      icon: Icon(ocultarSenha ? exibirIcon : ocultar),
-                      onPressed: exibir,
-                       ),
+
+                    suffixIcon: IconButton(icon: Icon(_obscureText ? Icons.visibility : Icons.visibility_off, color: Padroes().verde,),
+                          onPressed: (){
+                              setState(() {
+                                  if(_obscureText==true){
+                                    _obscureText=false;
+                                  }else{_obscureText=true;}
+                                });
+                            }, 
+                          ),
+                   
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         borderSide: BorderSide(color: Colors.black)),
