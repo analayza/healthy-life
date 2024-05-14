@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:healthylife/models/dieta.dart';
-import 'package:healthylife/models/usuario.dart';
 import 'package:healthylife/shared/temas_padrao.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
