@@ -64,16 +64,16 @@ class _DietaViewPageState extends State<DietaViewPage> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.0),
                     border: Border.all(
-                      color: Colors.green, // Cor da borda
-                      width: 1, // Largura da borda
+                      color: Colors.green, 
+                      width: 1,
                     ),
                     color: Colors.white,
                   ),
-                  alignment: Alignment.centerLeft, // Para centralizar o conteúdo
+                  alignment: Alignment.centerLeft, 
                   child: Center(
                     child: Text(
                       '${dieta.cafedamanha}',
-                      textAlign: TextAlign.center, // Alinhamento do texto
+                      textAlign: TextAlign.center, 
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.normal,
@@ -92,16 +92,16 @@ class _DietaViewPageState extends State<DietaViewPage> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.0),
                     border: Border.all(
-                      color: Colors.green, // Cor da borda
-                      width: 1, // Largura da borda
+                      color: Colors.green, 
+                      width: 1,
                     ),
                     color: Colors.white,
                   ),
-                  alignment: Alignment.centerLeft, // Para centralizar o conteúdo
+                  alignment: Alignment.centerLeft, 
                   child: Center(
                     child: Text(
                       '${dieta.lanche1}',
-                      textAlign: TextAlign.center, // Alinhamento do texto
+                      textAlign: TextAlign.center, 
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.normal,
@@ -120,16 +120,16 @@ class _DietaViewPageState extends State<DietaViewPage> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.0),
                     border: Border.all(
-                      color: Colors.green, // Cor da borda
-                      width: 1, // Largura da borda
+                      color: Colors.green, 
+                      width: 1, 
                     ),
                     color: Colors.white,
                   ),
-                  alignment: Alignment.centerLeft, // Para centralizar o conteúdo
+                  alignment: Alignment.centerLeft, 
                   child: Center(
                     child: Text(
                       '${dieta.almoco}',
-                      textAlign: TextAlign.center, // Alinhamento do texto
+                      textAlign: TextAlign.center, 
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.normal,
@@ -148,16 +148,16 @@ class _DietaViewPageState extends State<DietaViewPage> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.0),
                     border: Border.all(
-                      color: Colors.green, // Cor da borda
-                      width: 1, // Largura da borda
+                      color: Colors.green, 
+                      width: 1, 
                     ),
                     color: Colors.white,
                   ),
-                  alignment: Alignment.centerLeft, // Para centralizar o conteúdo
+                  alignment: Alignment.centerLeft, 
                   child: Center(
                     child: Text(
                       '${dieta.lanche2}',
-                      textAlign: TextAlign.center, // Alinhamento do texto
+                      textAlign: TextAlign.center, 
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.normal,
@@ -176,16 +176,16 @@ class _DietaViewPageState extends State<DietaViewPage> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.0),
                     border: Border.all(
-                      color: Colors.green, // Cor da borda
-                      width: 1, // Largura da borda
+                      color: Colors.green, 
+                      width: 1, 
                     ),
                     color: Colors.white,
                   ),
-                  alignment: Alignment.centerLeft, // Para centralizar o conteúdo
+                  alignment: Alignment.centerLeft, 
                   child: Center(
                     child: Text(
                       '${dieta.jantar}',
-                      textAlign: TextAlign.center, // Alinhamento do texto
+                      textAlign: TextAlign.center, 
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.normal,

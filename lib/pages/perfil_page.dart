@@ -81,16 +81,16 @@ class _PerfilPageState extends State<PerfilPage> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.0),
                     border: Border.all(
-                      color: Colors.green, // Cor da borda
-                      width: 1, // Largura da borda
+                      color: Colors.green, 
+                      width: 1, 
                     ),
                     color: Colors.white,
                   ),
-                  alignment: Alignment.centerLeft, // Para centralizar o conteúdo
+                  alignment: Alignment.centerLeft, 
                   child: Center(
                     child: Text(
                       '${usuario.nome}',
-                      textAlign: TextAlign.center, // Alinhamento do texto
+                      textAlign: TextAlign.center, 
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.normal,
@@ -121,16 +121,16 @@ class _PerfilPageState extends State<PerfilPage> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.0),
                     border: Border.all(
-                      color: Colors.green, // Cor da borda
-                      width: 1, // Largura da borda
+                      color: Colors.green, 
+                      width: 1,
                     ),
                     color: Colors.white,
                   ),
-                  alignment: Alignment.centerLeft, // Para centralizar o conteúdo
+                  alignment: Alignment.centerLeft, 
                   child: Center(
                     child: Text(
                       '${usuario.email}',
-                      textAlign: TextAlign.center, // Alinhamento do texto
+                      textAlign: TextAlign.center, 
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.normal,
@@ -162,16 +162,16 @@ class _PerfilPageState extends State<PerfilPage> {
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8.0),
                     border: Border.all(
-                      color: Colors.green, // Cor da borda
-                      width: 1, // Largura da borda
+                      color: Colors.green, 
+                      width: 1, 
                     ),
                     color: Colors.white,
                   ),
-                  alignment: Alignment.centerLeft, // Para centralizar o conteúdo
+                  alignment: Alignment.centerLeft, 
                   child: Center(
                     child: Text(
                       '${usuario.telefone}',
-                      textAlign: TextAlign.center, // Alinhamento do texto
+                      textAlign: TextAlign.center, 
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.normal,

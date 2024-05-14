@@ -16,6 +16,17 @@ class _CadastroPageState extends State<CadastroPage> {
   TextEditingController _telefoneController = TextEditingController();
   TextEditingController _nomeController = TextEditingController();
 
+ bool ocultarSenha = true;
+
+  IconData exibirIcon = Icons.visibility;
+  IconData ocultar = Icons.visibility_off;
+
+  void exibir() {
+    setState(() {
+      ocultarSenha = !ocultarSenha;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -131,15 +142,17 @@ class _CadastroPageState extends State<CadastroPage> {
                 height: 48,
                 child: TextField(
                   controller: _senhaController,
+                  obscureText: ocultarSenha,
                   decoration: InputDecoration(
                     prefixIcon: Icon(
                       Icons.password,
                       color: Padroes().verde,
                     ),
-                    suffixIcon: Icon(
-                      Icons.visibility,
+                    suffixIcon: IconButton(
                       color: Padroes().verde,
-                    ),
+                      icon: Icon(ocultarSenha ? exibirIcon : ocultar),
+                      onPressed: exibir,
+                       ),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8.0),
                         borderSide: BorderSide(color: Colors.black)),

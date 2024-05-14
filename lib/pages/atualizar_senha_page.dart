@@ -14,6 +14,17 @@ class _AtualizarSenhaPageState extends State<AtualizarSenhaPage> {
   TextEditingController _senhaControler = TextEditingController();
   TextEditingController _senhaNovaControler = TextEditingController();
 
+bool ocultarSenha = true;
+
+  IconData exibirIcon = Icons.visibility;
+  IconData ocultar = Icons.visibility_off;
+
+  void exibir() {
+    setState(() {
+      ocultarSenha = !ocultarSenha;
+    });
+  }
+
     Future<void> _updatePassword() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? currentPassword = prefs.getString("senha");
@@ -66,15 +77,18 @@ class _AtualizarSenhaPageState extends State<AtualizarSenhaPage> {
                     width: 450,
                     height: 48,
                     child: TextField(
+                      obscureText: ocultarSenha,
                       controller: _senhaControler,
                       decoration: InputDecoration(
                          prefixIcon: Icon(
                             Icons.password,
                             color: Padroes().verde,  
                           ),
-                          suffixIcon: Icon(
-                            Icons.visibility,
-                            color: Padroes().verde,  
+                          
+                          suffixIcon: IconButton(
+                          color: Padroes().verde,
+                          icon: Icon(ocultarSenha ? exibirIcon : ocultar),
+                          onPressed: exibir,
                           ),
                         
                         border: OutlineInputBorder(
@@ -104,15 +118,18 @@ class _AtualizarSenhaPageState extends State<AtualizarSenhaPage> {
                       width: 450,
                       height: 48,
                       child: TextField(
+                        obscureText: ocultarSenha,
                         controller: _senhaNovaControler,
                         decoration: InputDecoration(
                           prefixIcon: Icon(
                             Icons.password,
                             color: Padroes().verde,  
                           ),
-                          suffixIcon: Icon(
-                            Icons.visibility,
-                            color: Padroes().verde,  
+                          
+                          suffixIcon: IconButton(
+                          color: Padroes().verde,
+                          icon: Icon(ocultarSenha ? exibirIcon : ocultar),
+                          onPressed: exibir,
                           ),
                           
                             border: OutlineInputBorder(
